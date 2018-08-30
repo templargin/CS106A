@@ -127,10 +127,10 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 		case FOURS: return true;
 		case FIVES: return true;
 		case SIXES: return true;
-		case THREE_OF_A_KIND: if ((uniquesInArray(array) == 3) && (maxDuplicates(array) == 3)) return true; else return false;
-		case FOUR_OF_A_KIND: if (maxDuplicates(array) == 4) return true; else return false;
+		case THREE_OF_A_KIND: if (maxDuplicates(array) >= 3) return true; else return false;
+		case FOUR_OF_A_KIND: if (maxDuplicates(array) >= 4) return true; else return false;
 		case FULL_HOUSE: if ((uniquesInArray(array) == 2) && (maxDuplicates(array) == 3)) return true; else return false;
-		case SMALL_STRAIGHT: if (consecutiveCount(array) == 4) return true; else return false;
+		case SMALL_STRAIGHT: if (consecutiveCount(array) >= 4) return true; else return false;
 		case LARGE_STRAIGHT: if (consecutiveCount(array) == 5) return true; else return false;
 		case YAHTZEE: if (uniquesInArray(array) == 1) return true; else return false;
 		case CHANCE:  return true;
@@ -168,7 +168,7 @@ public class Yahtzee extends GraphicsProgram implements YahtzeeConstants {
 				count++;
 				if (count > max) max = count;
 			}
-			else
+			else if ((arr[i] - arr[i-1]) != 0)
 			{
 				count = 1;
 			}
